@@ -7,7 +7,7 @@ public class Conexion {
 
     private final String url = "jdbc:mysql://127.0.0.1:3306/vital_care";
     private final String usuario = "root";
-    private final String contraseña = "1234";
+    private final String contraseña = "Herley";
     Connection con = null;
 
     public Connection conectar() {

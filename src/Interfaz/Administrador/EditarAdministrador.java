@@ -14,6 +14,7 @@ public class EditarAdministrador extends javax.swing.JFrame {
 
     public EditarAdministrador() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public EditarAdministrador(String[] administrador) {
@@ -264,11 +265,9 @@ public class EditarAdministrador extends javax.swing.JFrame {
         jPanel1.add(BTNmostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 560, 84, 30));
 
         JPConfirmarContraseña.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        JPConfirmarContraseña.setPreferredSize(new java.awt.Dimension(15, 30));
         jPanel1.add(JPConfirmarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 560, 140, -1));
 
         JPContraseña.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        JPContraseña.setPreferredSize(new java.awt.Dimension(15, 30));
         jPanel1.add(JPContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, 140, -1));
 
         JLContraseña.setFont(new java.awt.Font("Serif", 1, 20)); // NOI18N
@@ -280,7 +279,7 @@ public class EditarAdministrador extends javax.swing.JFrame {
         jPanel1.add(JLConfirmarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Serif", 0, 16)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\geral\\OneDrive\\Documentos\\NetBeansProjects.jar\\Vital-Care\\src\\Imagenes\\Cuenta Medico (1).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Registro.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

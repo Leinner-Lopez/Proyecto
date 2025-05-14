@@ -41,7 +41,7 @@ public class MedicoSQL extends UsuarioSQL {
             stmt.setDate(6, fechasql);
             stmt.setString(7, medico.getDireccion());
             stmt.setString(8, medico.getBarrio());
-            stmt.setString(9, medico.getEspecialidad());
+            stmt.setString(9, medico.getTipo().toString());
             stmt.setString(10, medico.getCorreo());
             stmt.setString(11, medico.getTelefono());
             stmt.setString(12, Medico.getUsuario());
@@ -88,7 +88,7 @@ public class MedicoSQL extends UsuarioSQL {
             stmt.setDate(7, fechasql);
             stmt.setString(8, medico.getDireccion());
             stmt.setString(9, medico.getBarrio());
-            stmt.setString(10, medico.getEspecialidad());
+            stmt.setString(10, medico.getTipo().toString());
             stmt.setString(11, medico.getCorreo());
             stmt.setString(12, medico.getTelefono());
             stmt.setString(13, Medico.getUsuario());

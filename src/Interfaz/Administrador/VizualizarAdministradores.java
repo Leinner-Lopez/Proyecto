@@ -65,7 +65,7 @@ public class VizualizarAdministradores extends javax.swing.JFrame {
         });
         getContentPane().add(BTNEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, 160, 60));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\geral\\OneDrive\\Documentos\\NetBeansProjects.jar\\Vital-Care\\src\\Imagenes\\tablas Citas editar (1).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tablas Citas editar (1).png"))); // NOI18N
         jLabel1.setText("jLabel1");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 480));
 

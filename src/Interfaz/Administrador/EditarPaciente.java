@@ -14,6 +14,7 @@ public class EditarPaciente extends javax.swing.JFrame {
 
     public EditarPaciente() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public EditarPaciente(String[] paciente) {
@@ -287,7 +288,7 @@ public class EditarPaciente extends javax.swing.JFrame {
         jPanel1.add(JLConfirmarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Serif", 0, 16)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\geral\\OneDrive\\Documentos\\NetBeansProjects.jar\\Vital-Care\\src\\Imagenes\\Cuenta Medico (1).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Registro.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

@@ -39,19 +39,6 @@
         <Property name="useNullLayout" type="boolean" value="false"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="JLDatos_Usuario">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Serif" size="36" style="1"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Datos del Usuario"/>
-          </Properties>
-          <Constraints>
-            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="290" y="10" width="-1" height="-1"/>
-            </Constraint>
-          </Constraints>
-        </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -752,14 +739,14 @@
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="20">
-                <StringItem index="0" value="Medicina Interna"/>
+                <StringItem index="0" value="Medicina_Interna"/>
                 <StringItem index="1" value="Pediatr&#xed;a"/>
-                <StringItem index="2" value="Ginecolog&#xed;a y Obstetricia"/>
-                <StringItem index="3" value="Cirug&#xed;a General"/>
+                <StringItem index="2" value="Ginecolog&#xed;a_y_Obstetricia"/>
+                <StringItem index="3" value="Cirug&#xed;a_General"/>
                 <StringItem index="4" value="Anestesiolog&#xed;a"/>
                 <StringItem index="5" value="Cardiolog&#xed;a"/>
                 <StringItem index="6" value="Neurolog&#xed;a"/>
-                <StringItem index="7" value="Traumatolog&#xed;a y Ortopedia"/>
+                <StringItem index="7" value="Traumatolog&#xed;a_y_Ortopedia"/>
                 <StringItem index="8" value="Dermatolog&#xed;a"/>
                 <StringItem index="9" value="Oftalmolog&#xed;a"/>
                 <StringItem index="10" value="Otorrinolaringolog&#xed;a"/>
@@ -913,9 +900,6 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Serif" size="20" style="1"/>
             </Property>
-            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\geral\OneDrive\Documentos\NetBeansProjects.jar\Vital-Care\src\Imagenes\Cuenta Medico (1).png"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>
           <Constraints>
@@ -943,7 +927,7 @@
               <Font name="Serif" size="20" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/imagenes/Cuenta Medico (1).png"/>
+              <Image iconType="3" name="/imagenes/Registro.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel1"/>
           </Properties>

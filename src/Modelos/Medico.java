@@ -2,24 +2,32 @@ package Modelos;
 
 import java.util.Date;
 
-public class Medico extends Usuario{
-    private String especialidad;
+public class Medico extends Usuario {
+    
+    public enum especialidad {
+        Medicina_Interna, Pediatría, Ginecología_y_Obstetricia, Cirugía_General, Anestesiología,
+        Cardiología, Neurología, Traumatología_y_Ortopedia, Dermatología, Oftalmología, Otorrinolaringología, Neumología,
+        Urología, Endocrinología, Gastroenterología, Nefrología, Psiquiatría, Oncología, Reumatología, Radiología
+    };
+    public especialidad tipo;
 
     public Medico() {
     }
 
-    public Medico(String nombre1, String nombre2, String apellido1, String apellido2, String tipoDocumento, int numeroDocumento, Date fechaNacimiento, String correo, String telefono, String direccion, String barrio, String usuario, String contraseña, String especialidad) {
+    public Medico(String nombre1, String nombre2, String apellido1, String apellido2, String tipoDocumento, int numeroDocumento, Date fechaNacimiento, String correo, String telefono, String direccion, String barrio, String usuario, String contraseña, especialidad tipo) {
         super(nombre1, nombre2, apellido1, apellido2, tipoDocumento, numeroDocumento, fechaNacimiento, correo, telefono, direccion, barrio, contraseña);
-        this.especialidad = especialidad;
+        this.tipo = tipo;
     }
 
-    public String getEspecialidad() {
-        return especialidad;
+    public especialidad getTipo() {
+        return tipo;
     }
 
-    public void setEspecialidad(String especialidad) {
-        this.especialidad = especialidad;
+    public void setTipo(especialidad tipo) {
+        this.tipo = tipo;
     }
+
+
 
     public String getNombre1() {
         return nombre1;

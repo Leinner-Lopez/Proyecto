@@ -58,7 +58,7 @@ public class Pantalla_PrincipalP extends javax.swing.JFrame {
         jPanel1.add(JLNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 310, 35));
 
         jLabel1.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\geral\\OneDrive\\Documentos\\NetBeansProjects.jar\\Vital-Care\\src\\Imagenes\\PPpaciente.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PPpaciente.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 680, 470));
 
         JMenu.setMinimumSize(new java.awt.Dimension(41, 50));

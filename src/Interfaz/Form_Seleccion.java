@@ -1,12 +1,17 @@
 package Interfaz;
 
 import Interfaz.Paciente.CrearCuentaPaciente;
+import javax.swing.ImageIcon;
 
 public class Form_Seleccion extends javax.swing.JFrame {
+
     public Form_Seleccion() {
         initComponents();
         this.setLocationRelativeTo(this);
+ 
+
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -40,7 +45,7 @@ public class Form_Seleccion extends javax.swing.JFrame {
         });
         jPanel1.add(btnIniciarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 410, 200, 60));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\geral\\OneDrive\\Documentos\\NetBeansProjects.jar\\Vital-Care\\src\\Imagenes\\Hola, Bienvenid@ a Vital Care (3).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/hola_bienvenida_vitalcare.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 580));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -63,8 +68,8 @@ public class Form_Seleccion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCrearCuentaActionPerformed
 
     private void btnIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSesionActionPerformed
-       new IniciarSesion().setVisible(true);
-       this.dispose();
+        new IniciarSesion().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnIniciarSesionActionPerformed
 
     public static void main(String args[]) {

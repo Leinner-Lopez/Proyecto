@@ -9,11 +9,13 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class EditarMedico extends javax.swing.JFrame {
+
     boolean estado = false;
     SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 
     public EditarMedico() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     public EditarMedico(String[] medico) {
@@ -52,6 +54,7 @@ public class EditarMedico extends javax.swing.JFrame {
             System.out.println("Error: " + ex.getMessage());
         }
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -247,7 +250,12 @@ public class EditarMedico extends javax.swing.JFrame {
         jPanel1.add(JLSeguroMedico, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, -1));
 
         CBEspecialidad.setFont(new java.awt.Font("Serif", 1, 16)); // NOI18N
-        CBEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medicina Interna", "Pediatría", "Ginecología y Obstetricia", "Cirugía General", "Anestesiología", "Cardiología", "Neurología", "Traumatología y Ortopedia", "Dermatología", "Oftalmología", "Otorrinolaringología", "Neumología", "Urología", "Endocrinología", "Gastroenterología", "Nefrología", "Psiquiatría", "Oncología", "Reumatología", "Radiología" }));
+        CBEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medicina_Interna", "Pediatría", "Ginecología_y_Obstetricia", "Cirugía_General", "Anestesiología", "Cardiología", "Neurología", "Traumatología_y_Ortopedia", "Dermatología", "Oftalmología", "Otorrinolaringología", "Neumología", "Urología", "Endocrinología", "Gastroenterología", "Nefrología", "Psiquiatría", "Oncología", "Reumatología", "Radiología" }));
+        CBEspecialidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CBEspecialidadActionPerformed(evt);
+            }
+        });
         jPanel1.add(CBEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, -1, -1));
 
         JLDatosCuenta.setFont(new java.awt.Font("Serif", 1, 34)); // NOI18N
@@ -270,11 +278,9 @@ public class EditarMedico extends javax.swing.JFrame {
         jPanel1.add(BTNmostrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 560, 84, 30));
 
         JPConfirmarContraseña.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        JPConfirmarContraseña.setPreferredSize(new java.awt.Dimension(15, 30));
         jPanel1.add(JPConfirmarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 560, 140, -1));
 
         JPContraseña.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        JPContraseña.setPreferredSize(new java.awt.Dimension(15, 30));
         jPanel1.add(JPContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 510, 140, -1));
 
         JLContraseña.setFont(new java.awt.Font("Serif", 1, 20)); // NOI18N
@@ -286,7 +292,7 @@ public class EditarMedico extends javax.swing.JFrame {
         jPanel1.add(JLConfirmarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Serif", 1, 16)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\geral\\OneDrive\\Documentos\\NetBeansProjects.jar\\Vital-Care\\src\\Imagenes\\Cuenta Medico (1).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Registro.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -318,7 +324,8 @@ public class EditarMedico extends javax.swing.JFrame {
                 }
                 String Direccion = Metodos.direccion(CBTipo_Via1.getSelectedItem().toString().trim(), JTNumero_Principal1.getText().trim(), Bis.trim(), CBLetras1.getSelectedItem().toString().trim(), CBOrientacion1.getSelectedItem().toString().trim(), JTNumero1.getText().trim(), CBLetras2.getSelectedItem().toString().trim(), JTNumero2.getText().trim());
                 Date FechaNacimiento = (Date) JSFecha_Nacimiento.getValue();
-                Medico M = new Medico(JTnombre_1.getText(), JTnombre_2.getText(), JTapellido_1.getText(), JTapellido_2.getText(), CBTipo_Documento.getSelectedItem().toString(), Integer.parseInt(JTNumero_Documento.getText()), FechaNacimiento, JTCorreo_Electronico.getText(), JTTelefono.getText(), Direccion, CBBarrio.getSelectedItem().toString(), JTUsuario.getText(), contra, CBEspecialidad.getSelectedItem().toString());
+                Medico.especialidad esp = Medico.especialidad.valueOf(CBEspecialidad.getSelectedItem().toString());
+                Medico M = new Medico(JTnombre_1.getText(), JTnombre_2.getText(), JTapellido_1.getText(), JTapellido_2.getText(), CBTipo_Documento.getSelectedItem().toString(), Integer.parseInt(JTNumero_Documento.getText()), FechaNacimiento, JTCorreo_Electronico.getText(), JTTelefono.getText(), Direccion, CBBarrio.getSelectedItem().toString(), JTUsuario.getText(), contra, esp);
                 Medico.setUsuario(JTUsuario.getText());
                 MedicoSQL MS = new MedicoSQL(M);
                 MS.actualizarDatos();
@@ -343,6 +350,10 @@ public class EditarMedico extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_BTNmostrarActionPerformed
+
+    private void CBEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CBEspecialidadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CBEspecialidadActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

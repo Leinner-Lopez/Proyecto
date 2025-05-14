@@ -65,8 +65,7 @@ public class VizualizarMedicos extends javax.swing.JFrame {
         });
         getContentPane().add(BTNEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 380, 160, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\geral\\OneDrive\\Documentos\\NetBeansProjects.jar\\Vital-Care\\src\\Imagenes\\tablas Citas editar (1).png")); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tablas Citas editar (1).png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, -1));
 
         pack();
@@ -77,7 +76,7 @@ public class VizualizarMedicos extends javax.swing.JFrame {
         if (fila == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un paciente para eliminar");
         } else {
-            int numeroDocumento = Integer.parseInt(JTMedicos.getValueAt(fila, 2).toString());
+            int numeroDocumento = Integer.parseInt(JTMedicos.getValueAt(fila, 3).toString());
             int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea eliminar al medico?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
             if (confirmacion == JOptionPane.YES_OPTION) {
                 A.eliminarMedico(numeroDocumento);

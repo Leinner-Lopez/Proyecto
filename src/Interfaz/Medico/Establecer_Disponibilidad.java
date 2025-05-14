@@ -61,7 +61,7 @@ public class Establecer_Disponibilidad extends javax.swing.JFrame {
         getContentPane().add(BTNEstablecer, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 180, 40));
 
         jLabel4.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\geral\\OneDrive\\Documentos\\NetBeansProjects.jar\\Vital-Care\\src\\Imagenes\\disponibilidad medico .png")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/disponibilidad medico .png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 470));
 
         pack();

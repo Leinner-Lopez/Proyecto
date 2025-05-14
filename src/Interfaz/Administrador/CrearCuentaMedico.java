@@ -28,7 +28,6 @@ public class CrearCuentaMedico extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        JLDatos_Usuario = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         JLnombre_1 = new javax.swing.JLabel();
         JTnombre_1 = new javax.swing.JTextField();
@@ -80,10 +79,6 @@ public class CrearCuentaMedico extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        JLDatos_Usuario.setFont(new java.awt.Font("Serif", 1, 36)); // NOI18N
-        JLDatos_Usuario.setText("Datos del Usuario");
-        jPanel1.add(JLDatos_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, -1, -1));
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 51));
         jLabel3.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
@@ -235,7 +230,7 @@ public class CrearCuentaMedico extends javax.swing.JFrame {
         jPanel1.add(JLSeguroMedico, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, -1));
 
         CBEspecialidad.setFont(new java.awt.Font("Serif", 1, 16)); // NOI18N
-        CBEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medicina Interna", "Pediatría", "Ginecología y Obstetricia", "Cirugía General", "Anestesiología", "Cardiología", "Neurología", "Traumatología y Ortopedia", "Dermatología", "Oftalmología", "Otorrinolaringología", "Neumología", "Urología", "Endocrinología", "Gastroenterología", "Nefrología", "Psiquiatría", "Oncología", "Reumatología", "Radiología" }));
+        CBEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medicina_Interna", "Pediatría", "Ginecología_y_Obstetricia", "Cirugía_General", "Anestesiología", "Cardiología", "Neurología", "Traumatología_y_Ortopedia", "Dermatología", "Oftalmología", "Otorrinolaringología", "Neumología", "Urología", "Endocrinología", "Gastroenterología", "Nefrología", "Psiquiatría", "Oncología", "Reumatología", "Radiología" }));
         jPanel1.add(CBEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 310, -1, -1));
 
         JLDatosCuenta.setFont(new java.awt.Font("Serif", 1, 34)); // NOI18N
@@ -277,7 +272,6 @@ public class CrearCuentaMedico extends javax.swing.JFrame {
         jPanel1.add(JLConfirmarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Serif", 1, 20)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\geral\\OneDrive\\Documentos\\NetBeansProjects.jar\\Vital-Care\\src\\Imagenes\\Cuenta Medico (1).png")); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 600));
 
@@ -286,7 +280,7 @@ public class CrearCuentaMedico extends javax.swing.JFrame {
         jPanel1.add(JLDatos_Usuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Serif", 1, 20)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Cuenta Medico (1).png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Registro.png"))); // NOI18N
         jLabel2.setText("jLabel1");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 600));
 
@@ -323,7 +317,8 @@ public class CrearCuentaMedico extends javax.swing.JFrame {
                 } else {
                     String Direccion = Metodos.direccion(CBTipo_Via1.getSelectedItem().toString().trim(), JTNumero_Principal1.getText().trim(), Bis.trim(), CBLetras1.getSelectedItem().toString().trim(), CBOrientacion1.getSelectedItem().toString().trim(), JTNumero1.getText().trim(), CBLetras2.getSelectedItem().toString().trim(), JTNumero2.getText().trim());
                     Date FechaNacimiento = (Date) JSFecha_Nacimiento.getValue();
-                    Medico M = new Medico(JTnombre_1.getText(), JTnombre_2.getText(), JTapellido_1.getText(), JTapellido_2.getText(), CBTipo_Documento.getSelectedItem().toString(), Integer.parseInt(JTNumero_Documento.getText()), FechaNacimiento, JTCorreo_Electronico.getText(), JTTelefono.getText(), Direccion, CBBarrio.getSelectedItem().toString(), JTUsuario.getText(), contra, CBEspecialidad.getSelectedItem().toString());
+                    Medico.especialidad esp = Medico.especialidad.valueOf(CBEspecialidad.getSelectedItem().toString());
+                    Medico M = new Medico(JTnombre_1.getText(), JTnombre_2.getText(), JTapellido_1.getText(), JTapellido_2.getText(), CBTipo_Documento.getSelectedItem().toString(), Integer.parseInt(JTNumero_Documento.getText()), FechaNacimiento, JTCorreo_Electronico.getText(), JTTelefono.getText(), Direccion, CBBarrio.getSelectedItem().toString(), JTUsuario.getText(), contra, esp);
                     Medico.setUsuario(JTUsuario.getText());
                     MedicoSQL MS = new MedicoSQL(M);
                     MS.registrar();
@@ -395,7 +390,6 @@ public class CrearCuentaMedico extends javax.swing.JFrame {
     private javax.swing.JLabel JLCorreoElectronico;
     private javax.swing.JLabel JLDatosContacto;
     private javax.swing.JLabel JLDatosCuenta;
-    private javax.swing.JLabel JLDatos_Usuario;
     private javax.swing.JLabel JLDatos_Usuario1;
     private javax.swing.JLabel JLDireccion1;
     private javax.swing.JLabel JLFecha_Nacimiento;

@@ -1,12 +1,16 @@
 package Interfaz.Administrador;
+
 import Modelos.Administrador;
 import Persistencias.AdministradorSQL;
 import Persistencias.Metodos;
 import Persistencias.UsuarioSQL;
+import java.net.URL;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class CrearCuentaAdministrador extends javax.swing.JFrame {
+
     UsuarioSQL U = new AdministradorSQL();
     boolean estado = false;
 
@@ -295,8 +299,7 @@ public class CrearCuentaAdministrador extends javax.swing.JFrame {
         jPanel1.add(JLConfirmarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\geral\\OneDrive\\Documentos\\NetBeansProjects.jar\\Vital-Care\\src\\Imagenes\\Cuenta Medico (1).png")); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Registro.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 600));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -327,7 +330,7 @@ public class CrearCuentaAdministrador extends javax.swing.JFrame {
                     Bis = "Bis";
                 }
                 if (U.buscarExitenciadeNumeroDocumento(Integer.parseInt(JTNumero_Documento.getText()), "administradores")
-                    || U.buscarExitenciadeUsuario(JTUsuario.getText())) {
+                        || U.buscarExitenciadeUsuario(JTUsuario.getText())) {
                     JOptionPane.showMessageDialog(null, "Ya hay una persona con el mismo numero de documento o usuario", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
                     String Direccion = Metodos.direccion(CBTipo_Via1.getSelectedItem().toString().trim(), JTNumero_Principal1.getText().trim(), Bis.trim(), CBLetras1.getSelectedItem().toString().trim(), CBOrientacion1.getSelectedItem().toString().trim(), JTNumero1.getText().trim(), CBLetras2.getSelectedItem().toString().trim(), JTNumero2.getText().trim());
@@ -339,7 +342,7 @@ public class CrearCuentaAdministrador extends javax.swing.JFrame {
                     this.dispose();
                 }
             }
-        }else {
+        } else {
             JOptionPane.showMessageDialog(null, "Llena todos los campos", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_BTNResgistrarseActionPerformed

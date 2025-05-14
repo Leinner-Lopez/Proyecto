@@ -220,7 +220,7 @@
               <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\geral\OneDrive\Documentos\NetBeansProjects.jar\Vital-Care\src\Imagenes\VITAL CARE (560 x 560 px) (3).png"/>
+              <Image iconType="3" name="/imagenes/VITAL CARE (560 x 560 px) (3).png"/>
             </Property>
           </Properties>
           <Constraints>

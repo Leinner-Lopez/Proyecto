@@ -1,4 +1,5 @@
 package Interfaz.Paciente;
+
 import Persistencias.CitasSQL;
 import Persistencias.PacienteSQL;
 import javax.swing.JOptionPane;
@@ -7,15 +8,18 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class AgendarCita extends javax.swing.JFrame {
+
     PacienteSQL P = new PacienteSQL();
-    CitasSQL c =  new CitasSQL();
+    CitasSQL c = new CitasSQL();
+
     public AgendarCita() {
         initComponents();
         this.setLocationRelativeTo(null);
-        DefaultTableModel tabla = new DefaultTableModel(P.verMedicos(),new String[] {"NOMBRE","APELLIDO","Especialidad","Inicio Disponibilidad","Fin Disponibilidad"});
+        DefaultTableModel tabla = new DefaultTableModel(P.verMedicos(), new String[]{"NOMBRE", "APELLIDO", "Especialidad", "Inicio Disponibilidad", "Fin Disponibilidad"});
         JTMedicos.setModel(tabla);
         JTMedicos.setDefaultEditor(Object.class, null);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -58,7 +62,7 @@ public class AgendarCita extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 830, 280));
 
         CBEspecialidad.setFont(new java.awt.Font("Serif", 1, 18)); // NOI18N
-        CBEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medicina Interna", "Pediatría", "Ginecología y Obstetricia", "Cirugía General", "Anestesiología", "Cardiología", "Neurología", "Traumatología y Ortopedia", "Dermatología", "Oftalmología", "Otorrinolaringología", "Neumología", "Urología", "Endocrinología", "Gastroenterología", "Nefrología", "Psiquiatría", "Oncología", "Reumatología", "Radiología" }));
+        CBEspecialidad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Medicina_Interna", "Pediatría", "Ginecología_y_Obstetricia", "Cirugía_General", "Anestesiología", "Cardiología", "Neurología", "Traumatología_y_Ortopedia", "Dermatología", "Oftalmología", "Otorrinolaringología", "Neumología", "Urología", "Endocrinología", "Gastroenterología", "Nefrología", "Psiquiatría", "Oncología", "Reumatología", "Radiología" }));
         jPanel1.add(CBEspecialidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
@@ -86,7 +90,7 @@ public class AgendarCita extends javax.swing.JFrame {
         });
         jPanel1.add(BTNAgendar, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 440, 190, 60));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\geral\\OneDrive\\Documentos\\NetBeansProjects.jar\\Vital-Care\\src\\Imagenes\\agendar cita P.png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agendar cita P.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 510));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -104,28 +108,33 @@ public class AgendarCita extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BTNBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNBuscarActionPerformed
-        DefaultTableModel tabla = new DefaultTableModel(P.buscarMedicos(CBEspecialidad.getSelectedItem().toString()),new String[] {"NOMBRE","APELLIDO","Especialidad","Inicio Disponibilidad","Fin Disponibilidad"});
-        JTMedicos.setModel(tabla);
-        JTMedicos.setDefaultEditor(Object.class, null);
+        if (CBEspecialidad.getSelectedItem().toString().equals("Todos")) {
+            DefaultTableModel tabla = new DefaultTableModel(P.verMedicos(), new String[]{"NOMBRE", "APELLIDO", "Especialidad", "Inicio Disponibilidad", "Fin Disponibilidad"});
+            JTMedicos.setModel(tabla);
+        } else {
+            DefaultTableModel tabla = new DefaultTableModel(P.buscarMedicos(CBEspecialidad.getSelectedItem().toString()), new String[]{"NOMBRE", "APELLIDO", "Especialidad", "Inicio Disponibilidad", "Fin Disponibilidad"});
+            JTMedicos.setModel(tabla);
+            JTMedicos.setDefaultEditor(Object.class, null);
+        }
     }//GEN-LAST:event_BTNBuscarActionPerformed
 
     private void BTNAgendarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNAgendarActionPerformed
         int Fila = JTMedicos.getSelectedRow();
-        if(Fila == -1){
+        if (Fila == -1) {
             JOptionPane.showMessageDialog(null, "Seleccione un medico para agendar la cita medica");
-        }else{
-            String FechaFin = JTMedicos.getValueAt(Fila,4).toString();
+        } else {
+            String FechaFin = JTMedicos.getValueAt(Fila, 4).toString();
             String FechaInicio = JTMedicos.getValueAt(Fila, 3).toString();
             Timestamp disponibilidadFinal = Timestamp.valueOf(FechaFin);
             Timestamp disponibilidadInicial = Timestamp.valueOf(FechaInicio);
             Timestamp ahora = new Timestamp(System.currentTimeMillis());
-            if(disponibilidadFinal.after(ahora) ){
+            if (disponibilidadFinal.after(ahora)) {
                 ArrayList<String> citasDisponibles;
-                int numeroDocumento = c.determinarNumeroDocumentoMedico(JTMedicos.getValueAt(Fila, 0).toString(),JTMedicos.getValueAt(Fila, 1).toString(), JTMedicos.getValueAt(Fila, 2).toString());
+                int numeroDocumento = c.determinarNumeroDocumentoMedico(JTMedicos.getValueAt(Fila, 0).toString(), JTMedicos.getValueAt(Fila, 1).toString(), JTMedicos.getValueAt(Fila, 2).toString());
                 citasDisponibles = c.obtenerCitasTomadas(disponibilidadInicial, disponibilidadFinal, numeroDocumento);
-                new DeterminarFechaCita(citasDisponibles, JTMedicos.getValueAt(Fila, 0).toString(),JTMedicos.getValueAt(Fila, 1).toString(), JTMedicos.getValueAt(Fila, 2).toString(),numeroDocumento).setVisible(true);
+                new DeterminarFechaCita(citasDisponibles, JTMedicos.getValueAt(Fila, 0).toString(), JTMedicos.getValueAt(Fila, 1).toString(), JTMedicos.getValueAt(Fila, 2).toString(), numeroDocumento).setVisible(true);
                 this.dispose();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "La disponibilidad del Medico a vencido", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
