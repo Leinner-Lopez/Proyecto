@@ -1,5 +1,6 @@
 package Interfaz.Paciente;
 
+import Modelos.Citas;
 import Persistencias.CitasSQL;
 import Persistencias.PacienteSQL;
 import javax.swing.JOptionPane;
@@ -130,9 +131,12 @@ public class AgendarCita extends javax.swing.JFrame {
             Timestamp ahora = new Timestamp(System.currentTimeMillis());
             if (disponibilidadFinal.after(ahora)) {
                 ArrayList<String> citasDisponibles;
+                Citas ci = new Citas();
                 int numeroDocumento = c.determinarNumeroDocumentoMedico(JTMedicos.getValueAt(Fila, 0).toString(), JTMedicos.getValueAt(Fila, 1).toString(), JTMedicos.getValueAt(Fila, 2).toString());
+                ci.setDocumentoMedico(numeroDocumento);
+                ci.setDocumentoPaciente(c.determinarNumeroDocumentoPaciente());
                 citasDisponibles = c.obtenerCitasTomadas(disponibilidadInicial, disponibilidadFinal, numeroDocumento);
-                new DeterminarFechaCita(citasDisponibles, JTMedicos.getValueAt(Fila, 0).toString(), JTMedicos.getValueAt(Fila, 1).toString(), JTMedicos.getValueAt(Fila, 2).toString(), numeroDocumento).setVisible(true);
+                new DeterminarFechaCita(citasDisponibles, JTMedicos.getValueAt(Fila, 0).toString(), JTMedicos.getValueAt(Fila, 1).toString(), JTMedicos.getValueAt(Fila, 2).toString(), ci).setVisible(true);
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(null, "La disponibilidad del Medico a vencido", "Error", JOptionPane.ERROR_MESSAGE);

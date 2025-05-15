@@ -1,16 +1,23 @@
 package Interfaz.Paciente;
 
+import Modelos.Citas;
 import Persistencias.PacienteSQL;
 import Modelos.Usuario;
+import Persistencias.CitasSQL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class VerCitas extends javax.swing.JFrame {
+
     PacienteSQL P = new PacienteSQL();
 
     public VerCitas() {
         initComponents();
         this.setLocationRelativeTo(null);
-        DefaultTableModel tabla = new DefaultTableModel(P.verCitas(Usuario.getUsuario()), new String[]{"NUMERO DOCUMENTO", "NOMBRE MEDICO", "ESPECIALIDAD", "FECHA CITA"});
+        DefaultTableModel tabla = new DefaultTableModel(P.verCitas(Usuario.getUsuario()), new String[]{"DOCUMENTO PACIENTE", "NOMBRE MEDICO", "DOCUMENTO MEDICO", "ESPECIALIDAD", "FECHA CITA"});
         JTCitas.setModel(tabla);
     }
 
@@ -20,6 +27,7 @@ public class VerCitas extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         JTCitas = new javax.swing.JTable();
+        btnEliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -38,13 +46,51 @@ public class VerCitas extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(JTCitas);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 820, 268));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 820, 190));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tablas Citas agendadas (1).png"))); // NOI18N
+        btnEliminar.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.setContentAreaFilled(false);
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 410, 160, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Vercitas.jpeg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 470));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int fila = JTCitas.getSelectedRow();
+        if (fila == -1) {
+            JOptionPane.showMessageDialog(null, "Seleccione una cita para eliminar");
+        } else {
+            int confirmacion = JOptionPane.showConfirmDialog(null, "¿Está seguro de que desea eliminar la cita medica?", "Confirmar Eliminación", JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                int documentoPaciente = Integer.parseInt(JTCitas.getValueAt(fila, 0).toString());
+                int documentoMedico = Integer.parseInt(JTCitas.getValueAt(fila, 2).toString());
+                String fecha = JTCitas.getValueAt(fila, 4).toString();
+                SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date fechaCita = null;
+                try {
+                    fechaCita = formato.parse(fecha);
+                } catch (ParseException e) {
+                    System.out.println("Error: " + e.getMessage());
+                }
+                Citas ci = new Citas(documentoMedico, documentoPaciente, fechaCita);
+                CitasSQL c = new CitasSQL(ci);
+                c.eliminarCita();
+                DefaultTableModel tabla = new DefaultTableModel(P.verCitas(Usuario.getUsuario()), new String[]{"DOCUMENTO PACIENTE", "NOMBRE MEDICO", "DOCUMENTO MEDICO", "ESPECIALIDAD", "FECHA CITA"});
+                JTCitas.setModel(tabla);
+            }
+
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -80,6 +126,7 @@ public class VerCitas extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTCitas;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

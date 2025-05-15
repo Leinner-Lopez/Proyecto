@@ -1,5 +1,6 @@
 package Interfaz.Paciente;
 
+import Modelos.Citas;
 import Persistencias.CitasSQL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -8,13 +9,13 @@ import java.util.Date;
 
 public class DeterminarFechaCita extends javax.swing.JFrame {
 
-    CitasSQL c = new CitasSQL();
+    Citas ci;
     int numeroDocumento;
 
-    public DeterminarFechaCita(ArrayList<String> citasDisponibles, String nombre_1, String apellido_1, String especialidad, int numeroDocumento) {
+    public DeterminarFechaCita(ArrayList<String> citasDisponibles, String nombre_1, String apellido_1, String especialidad, Citas ci) {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.numeroDocumento = numeroDocumento;
+        this.ci = ci;
         JLnombre.setText(nombre_1);
         JLApellido.setText(apellido_1);
         JLEspecialidad.setText(especialidad);
@@ -108,7 +109,9 @@ public class DeterminarFechaCita extends javax.swing.JFrame {
         } catch (ParseException e) {
             System.out.println("Error: " + e.getMessage());
         }
-        c.agendarCita(numeroDocumento, fecha);
+        ci.setFechaCita(fecha);
+        CitasSQL c = new CitasSQL(ci);
+        c.agendarCita();
         this.dispose();
 
     }//GEN-LAST:event_BTNAgendarActionPerformed

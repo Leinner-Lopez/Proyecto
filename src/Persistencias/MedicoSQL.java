@@ -144,17 +144,18 @@ public class MedicoSQL extends UsuarioSQL {
             stmt2.setInt(1, numeroDOCUMENTO);
             rta2 = stmt2.executeQuery();
             while (rta2.next()) {
-                Object[] datos = new Object[4];
+                Object[] datos = new Object[5];
                 int DocumentoPaciente = rta2.getInt("documento_paciente");
                 datos[0] = numeroDOCUMENTO;
-                datos[3] = formato.format(rta2.getTimestamp("fecha_hora"));
+                datos[2] = DocumentoPaciente;
+                datos[4] = formato.format(rta2.getTimestamp("fecha_hora"));
                 String query3 = "SELECT nombre_1, apellido_1, seguro_medico FROM pacientes WHERE num_documento = ?";
                 stmt3 = con.prepareStatement(query3);
                 stmt3.setInt(1, DocumentoPaciente);
                 rta3 = stmt3.executeQuery();
                 if (rta3.next()) {
                     datos[1] = rta3.getString("nombre_1") + " " + rta3.getString("apellido_1");
-                    datos[2] = rta3.getString("seguro_medico");
+                    datos[3] = rta3.getString("seguro_medico");
                 }
                 citas.add(datos);
             }

@@ -4,9 +4,7 @@ import Modelos.Administrador;
 import Persistencias.AdministradorSQL;
 import Persistencias.Metodos;
 import Persistencias.UsuarioSQL;
-import java.net.URL;
 import java.util.Date;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class CrearCuentaAdministrador extends javax.swing.JFrame {
@@ -335,7 +333,7 @@ public class CrearCuentaAdministrador extends javax.swing.JFrame {
                 } else {
                     String Direccion = Metodos.direccion(CBTipo_Via1.getSelectedItem().toString().trim(), JTNumero_Principal1.getText().trim(), Bis.trim(), CBLetras1.getSelectedItem().toString().trim(), CBOrientacion1.getSelectedItem().toString().trim(), JTNumero1.getText().trim(), CBLetras2.getSelectedItem().toString().trim(), JTNumero2.getText().trim());
                     Date FechaNacimiento = (Date) JSFecha_Nacimiento.getValue();
-                    Administrador A = new Administrador(JTnombre_1.getText(), JTnombre_2.getText(), JTapellido_1.getText(), JTapellido_2.getText(), CBTipo_Documento.getSelectedItem().toString(), Integer.parseInt(JTNumero_Documento.getText()), FechaNacimiento, JTCorreo_Electronico.getText(), JTTelefono.getText(), Direccion, CBBarrio.getSelectedItem().toString(), JTUsuario.getText(), contra);
+                    Administrador A = new Administrador(JTnombre_1.getText(), JTnombre_2.getText(), JTapellido_1.getText(), JTapellido_2.getText(), CBTipo_Documento.getSelectedItem().toString(), Integer.parseInt(JTNumero_Documento.getText()), FechaNacimiento, JTCorreo_Electronico.getText(), JTTelefono.getText(), Direccion, CBBarrio.getSelectedItem().toString(), JTUsuario.getText().trim(), contra.trim());
                     Administrador.setUsuario(JTUsuario.getText());
                     AdministradorSQL AS = new AdministradorSQL(A);
                     AS.registrar();

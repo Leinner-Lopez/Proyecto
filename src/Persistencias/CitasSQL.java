@@ -1,5 +1,6 @@
 package Persistencias;
 
+import Modelos.Citas;
 import Modelos.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,12 +10,19 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import javax.swing.JOptionPane;
 
 public class CitasSQL {
 
     Conexion c = new Conexion();
+    private Citas ci;
+
+    public CitasSQL() {
+    }
+
+    public CitasSQL(Citas ci) {
+        this.ci = ci;
+    }
 
     public int determinarNumeroDocumentoMedico(String nombre_1, String apellido_1, String especialidad) {
         Connection con = null;
@@ -28,6 +36,40 @@ public class CitasSQL {
             stmt.setString(1, nombre_1);
             stmt.setString(2, apellido_1);
             stmt.setString(3, especialidad);
+            rta = stmt.executeQuery();
+            if (rta.next()) {
+                documento = rta.getInt("num_documento");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            try {
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+                if (rta != null) {
+                    rta.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+        return documento;
+    }
+
+    public int determinarNumeroDocumentoPaciente() {
+        Connection con = null;
+        PreparedStatement stmt = null;
+        ResultSet rta = null;
+        int documento = 0;
+        try {
+            con = c.conectar();
+            String query = "SELECT num_documento FROM pacientes WHERE usuario = ?";
+            stmt = con.prepareStatement(query);
+            stmt.setString(1, Usuario.getUsuario());
             rta = stmt.executeQuery();
             if (rta.next()) {
                 documento = rta.getInt("num_documento");
@@ -105,26 +147,18 @@ public class CitasSQL {
         return horasDisponibles;
     }
 
-    public void agendarCita(int NumeroDocumento, Date HoraCita) {
-        Timestamp fechasql = new Timestamp(HoraCita.getTime());
+    public void agendarCita() {
+        Timestamp fechasql = new Timestamp(ci.getFechaCita().getTime());
         Connection con = null;
         ResultSet rta = null;
         PreparedStatement stmt = null;
         try {
             con = c.conectar();
-            String query = "SELECT num_documento FROM pacientes WHERE usuario = ?";
-            stmt = con.prepareStatement(query);
-            stmt.setString(1, Usuario.getUsuario());
-            rta = stmt.executeQuery();
-            int numeroDocumento = 0;
-            if (rta.next()) {
-                numeroDocumento = rta.getInt("num_documento");
-            }
-            query = "INSERT INTO citas (fecha_hora, documento_paciente, documento_medico) VALUES (?, ?, ?)";
+            String query = "INSERT INTO citas (fecha_hora, documento_paciente, documento_medico) VALUES (?, ?, ?)";
             stmt = con.prepareStatement(query);
             stmt.setTimestamp(1, fechasql);
-            stmt.setInt(2, numeroDocumento);
-            stmt.setInt(3, NumeroDocumento);
+            stmt.setInt(2, ci.getDocumentoPaciente());
+            stmt.setInt(3, ci.getDocumentoMedico());
             int filas = stmt.executeUpdate();
             if (filas > 0) {
                 JOptionPane.showMessageDialog(null, "Cita Agendada con exito", "Cita agendada", JOptionPane.INFORMATION_MESSAGE);
@@ -136,6 +170,39 @@ public class CitasSQL {
                 if (rta != null) {
                     rta.close();
                 }
+                if (stmt != null) {
+                    stmt.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+    }
+
+    public void eliminarCita() {
+        Timestamp fechasql = new Timestamp(ci.getFechaCita().getTime());
+        Connection con = null;
+        PreparedStatement stmt = null;
+        try {
+            con = c.conectar();
+            String query = "DELETE FROM citas WHERE documento_paciente = ? AND documento_medico = ? AND fecha_hora = ?";
+            stmt = con.prepareStatement(query);
+            stmt.setInt(1, ci.getDocumentoPaciente());
+            stmt.setInt(2, ci.getDocumentoMedico());
+            stmt.setTimestamp(3, fechasql);
+            int filas = stmt.executeUpdate();
+            if (filas > 0) {
+                JOptionPane.showMessageDialog(null, "Cita eliminada con exito", "Paciente Eliminado", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                System.out.println("No se pudo eliminar la cita");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error: " + e.getMessage());
+        } finally {
+            try {
                 if (stmt != null) {
                     stmt.close();
                 }

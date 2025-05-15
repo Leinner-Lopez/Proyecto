@@ -117,7 +117,7 @@ public class PacienteSQL extends UsuarioSQL {
     }
 
     @Override
-    public Object[][] verCitas(String Usuario) {
+    public Object[][] verCitas(String User) {
         List<Object[]> citas = new ArrayList<>();
         Connection con = null;
         PreparedStatement stmt = null;
@@ -131,7 +131,7 @@ public class PacienteSQL extends UsuarioSQL {
             con = c.conectar();
             String query1 = "SELECT num_documento FROM pacientes WHERE usuario = ?";
             stmt = con.prepareStatement(query1);
-            stmt.setString(1, Paciente.getUsuario());
+            stmt.setString(1, User);
             rta = stmt.executeQuery();
             int numeroDOCUMENTO;
             if (rta.next()) {
@@ -144,17 +144,18 @@ public class PacienteSQL extends UsuarioSQL {
             stmt2.setInt(1, numeroDOCUMENTO);
             rta2 = stmt2.executeQuery();
             while (rta2.next()) {
-                Object[] datos = new Object[4];
+                Object[] datos = new Object[5];
                 int DocumentoMedico = rta2.getInt("documento_medico");
                 datos[0] = numeroDOCUMENTO;
-                datos[3] = formato.format(rta2.getTimestamp("fecha_hora"));
+                datos[2] = DocumentoMedico;
+                datos[4] = formato.format(rta2.getTimestamp("fecha_hora"));
                 String query3 = "SELECT nombre_1, apellido_1, especialidad FROM medicos WHERE num_documento = ?";
                 stmt3 = con.prepareStatement(query3);
                 stmt3.setInt(1, DocumentoMedico);
                 rta3 = stmt3.executeQuery();
                 if (rta3.next()) {
                     datos[1] = rta3.getString("nombre_1") + " " + rta3.getString("apellido_1");
-                    datos[2] = rta3.getString("especialidad");
+                    datos[3] = rta3.getString("especialidad");
                 }
                 citas.add(datos);
             }
