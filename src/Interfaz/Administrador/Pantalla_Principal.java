@@ -1,4 +1,6 @@
 package Interfaz.Administrador;
+import Interfaz.Form_Seleccion;
+import Interfaz.IniciarSesion;
 import Modelos.Administrador;
 import Modelos.Usuario;
 import Persistencias.AdministradorSQL;
@@ -37,6 +39,8 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         subMedicos = new javax.swing.JMenuItem();
         subAdministradores = new javax.swing.JMenuItem();
         subCitas = new javax.swing.JMenuItem();
+        JMCerrarSesión = new javax.swing.JMenu();
+        subCerrarsesión = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,9 +77,11 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         JMenu.setPreferredSize(new java.awt.Dimension(181, 40));
 
         JMRegistrar.setText("Registrar");
+        JMRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         JMRegistrar.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
         JMRegistrar.setMinimumSize(new java.awt.Dimension(70, 28));
 
+        subRegistrarMedico.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         subRegistrarMedico.setText("Medico");
         subRegistrarMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +90,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         });
         JMRegistrar.add(subRegistrarMedico);
 
+        subRegistrarPaciente.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         subRegistrarPaciente.setText("Paciente");
         subRegistrarPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +99,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         });
         JMRegistrar.add(subRegistrarPaciente);
 
+        subRegistrarAdministrador.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         subRegistrarAdministrador.setText("Administrador");
         subRegistrarAdministrador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,9 +111,11 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         JMenu.add(JMRegistrar);
 
         JMVisualizar.setText("Visualizar");
+        JMVisualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         JMVisualizar.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
         JMVisualizar.setMinimumSize(new java.awt.Dimension(70, 28));
 
+        subPacientes.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         subPacientes.setText("Pacientes");
         subPacientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,6 +124,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         });
         JMVisualizar.add(subPacientes);
 
+        subMedicos.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         subMedicos.setText("Medicos");
         subMedicos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,6 +133,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         });
         JMVisualizar.add(subMedicos);
 
+        subAdministradores.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         subAdministradores.setText("Administradores");
         subAdministradores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,6 +142,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         });
         JMVisualizar.add(subAdministradores);
 
+        subCitas.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         subCitas.setText("Citas");
         subCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,6 +152,21 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         JMVisualizar.add(subCitas);
 
         JMenu.add(JMVisualizar);
+
+        JMCerrarSesión.setText("Cerrar sesión");
+        JMCerrarSesión.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JMCerrarSesión.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+
+        subCerrarsesión.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        subCerrarsesión.setText("Cerrar sesión");
+        subCerrarsesión.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subCerrarsesiónActionPerformed(evt);
+            }
+        });
+        JMCerrarSesión.add(subCerrarsesión);
+
+        JMenu.add(JMCerrarSesión);
 
         setJMenuBar(JMenu);
 
@@ -184,6 +212,11 @@ public class Pantalla_Principal extends javax.swing.JFrame {
         new VizualizarAdministradores().setVisible(true);
     }//GEN-LAST:event_subAdministradoresActionPerformed
 
+    private void subCerrarsesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subCerrarsesiónActionPerformed
+        new Form_Seleccion().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_subCerrarsesiónActionPerformed
+
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -218,6 +251,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel JLNombre;
     private javax.swing.JLabel JLco;
     private javax.swing.JLabel JLus;
+    private javax.swing.JMenu JMCerrarSesión;
     private javax.swing.JMenu JMRegistrar;
     private javax.swing.JMenu JMVisualizar;
     private javax.swing.JMenuBar JMenu;
@@ -225,6 +259,7 @@ public class Pantalla_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem subAdministradores;
+    private javax.swing.JMenuItem subCerrarsesión;
     private javax.swing.JMenuItem subCitas;
     private javax.swing.JMenuItem subMedicos;
     private javax.swing.JMenuItem subPacientes;

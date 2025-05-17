@@ -1,4 +1,6 @@
 package Interfaz.Medico;
+import Interfaz.Form_Seleccion;
+import Interfaz.IniciarSesion;
 import Modelos.Usuario;
 import Modelos.Medico;
 import Persistencias.MedicoSQL;
@@ -27,10 +29,12 @@ public class Pantalla_PrincipalM extends javax.swing.JFrame {
         JLNombre = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         JMenu = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        JMCitas = new javax.swing.JMenu();
+        subVerCitas = new javax.swing.JMenuItem();
+        JMDisponibilidad = new javax.swing.JMenu();
         JMEstablecer_Disponibilidad = new javax.swing.JMenuItem();
+        JMCerrarSesión = new javax.swing.JMenu();
+        subCerrarSesión = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,31 +60,52 @@ public class Pantalla_PrincipalM extends javax.swing.JFrame {
         JMenu.setMinimumSize(new java.awt.Dimension(134, 50));
         JMenu.setPreferredSize(new java.awt.Dimension(134, 50));
 
-        jMenu1.setText("Citas");
-        jMenu1.setMinimumSize(new java.awt.Dimension(41, 30));
-        jMenu1.setPreferredSize(new java.awt.Dimension(41, 30));
+        JMCitas.setText("Citas");
+        JMCitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JMCitas.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+        JMCitas.setMinimumSize(new java.awt.Dimension(41, 30));
+        JMCitas.setPreferredSize(new java.awt.Dimension(41, 30));
 
-        jMenuItem2.setText("Ver Citas");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        subVerCitas.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        subVerCitas.setText("Ver Citas");
+        subVerCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                subVerCitasActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem2);
+        JMCitas.add(subVerCitas);
 
-        JMenu.add(jMenu1);
+        JMenu.add(JMCitas);
 
-        jMenu2.setText("Disponibilidad");
+        JMDisponibilidad.setText("Disponibilidad");
+        JMDisponibilidad.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JMDisponibilidad.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
 
+        JMEstablecer_Disponibilidad.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         JMEstablecer_Disponibilidad.setText("Establecer Disponibilidad");
         JMEstablecer_Disponibilidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 JMEstablecer_DisponibilidadActionPerformed(evt);
             }
         });
-        jMenu2.add(JMEstablecer_Disponibilidad);
+        JMDisponibilidad.add(JMEstablecer_Disponibilidad);
 
-        JMenu.add(jMenu2);
+        JMenu.add(JMDisponibilidad);
+
+        JMCerrarSesión.setText("Cerrar Sesión");
+        JMCerrarSesión.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JMCerrarSesión.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+
+        subCerrarSesión.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        subCerrarSesión.setText("Cerrar Sesión");
+        subCerrarSesión.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subCerrarSesiónActionPerformed(evt);
+            }
+        });
+        JMCerrarSesión.add(subCerrarSesión);
+
+        JMenu.add(JMCerrarSesión);
 
         setJMenuBar(JMenu);
 
@@ -98,13 +123,18 @@ public class Pantalla_PrincipalM extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void subVerCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subVerCitasActionPerformed
         new VerCitas().setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_subVerCitasActionPerformed
 
     private void JMEstablecer_DisponibilidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JMEstablecer_DisponibilidadActionPerformed
        new Establecer_Disponibilidad().setVisible(true);
     }//GEN-LAST:event_JMEstablecer_DisponibilidadActionPerformed
+
+    private void subCerrarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subCerrarSesiónActionPerformed
+        new Form_Seleccion().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_subCerrarSesiónActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -139,13 +169,15 @@ public class Pantalla_PrincipalM extends javax.swing.JFrame {
     private javax.swing.JLabel JLCorreo;
     private javax.swing.JLabel JLNombre;
     private javax.swing.JLabel JLco;
+    private javax.swing.JMenu JMCerrarSesión;
+    private javax.swing.JMenu JMCitas;
+    private javax.swing.JMenu JMDisponibilidad;
     private javax.swing.JMenuItem JMEstablecer_Disponibilidad;
     private javax.swing.JMenuBar JMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem subCerrarSesión;
+    private javax.swing.JMenuItem subVerCitas;
     // End of variables declaration//GEN-END:variables
 }

@@ -15,6 +15,9 @@
         <Menu class="javax.swing.JMenu" name="JMRegistrar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Registrar"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Serif" size="14" style="1"/>
             </Property>
@@ -25,6 +28,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="subRegistrarMedico">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Serif" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Medico"/>
               </Properties>
               <Events>
@@ -33,6 +39,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="subRegistrarPaciente">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Serif" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Paciente"/>
               </Properties>
               <Events>
@@ -41,6 +50,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="subRegistrarAdministrador">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Serif" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Administrador"/>
               </Properties>
               <Events>
@@ -52,6 +64,9 @@
         <Menu class="javax.swing.JMenu" name="JMVisualizar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Visualizar"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Serif" size="14" style="1"/>
             </Property>
@@ -62,6 +77,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="subPacientes">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Serif" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Pacientes"/>
               </Properties>
               <Events>
@@ -70,6 +88,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="subMedicos">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Serif" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Medicos"/>
               </Properties>
               <Events>
@@ -78,6 +99,9 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="subAdministradores">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Serif" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Administradores"/>
               </Properties>
               <Events>
@@ -86,10 +110,37 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="subCitas">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Serif" size="14" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Citas"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subCitasActionPerformed"/>
+              </Events>
+            </MenuItem>
+          </SubComponents>
+        </Menu>
+        <Menu class="javax.swing.JMenu" name="JMCerrarSesi&#xf3;n">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cerrar sesi&#xf3;n"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Hand Cursor"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Serif" size="14" style="1"/>
+            </Property>
+          </Properties>
+          <SubComponents>
+            <MenuItem class="javax.swing.JMenuItem" name="subCerrarsesi&#xf3;n">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Serif" size="14" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Cerrar sesi&#xf3;n"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="subCerrarsesi&#xf3;nActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

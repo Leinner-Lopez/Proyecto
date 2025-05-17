@@ -1,16 +1,11 @@
 package Interfaz.Paciente;
 
+import Interfaz.Form_Seleccion;
+import Interfaz.IniciarSesion;
 import Persistencias.PacienteSQL;
 import Persistencias.UsuarioSQL;
 import Modelos.Paciente;
 import Modelos.Usuario;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import javax.swing.JButton;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 public class Pantalla_PrincipalP extends javax.swing.JFrame {
 
     UsuarioSQL u = new PacienteSQL();
@@ -38,6 +33,8 @@ public class Pantalla_PrincipalP extends javax.swing.JFrame {
         JMRegistrar = new javax.swing.JMenu();
         subVerCitas = new javax.swing.JMenuItem();
         subAgendarCita = new javax.swing.JMenuItem();
+        JMCerrarSesión = new javax.swing.JMenu();
+        subCerrarSesión = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,7 +62,10 @@ public class Pantalla_PrincipalP extends javax.swing.JFrame {
         JMenu.setPreferredSize(new java.awt.Dimension(41, 50));
 
         JMRegistrar.setText("Citas");
+        JMRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JMRegistrar.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
 
+        subVerCitas.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         subVerCitas.setText("VerCitas");
         subVerCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +74,7 @@ public class Pantalla_PrincipalP extends javax.swing.JFrame {
         });
         JMRegistrar.add(subVerCitas);
 
+        subAgendarCita.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         subAgendarCita.setText("AgendarCita");
         subAgendarCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,6 +84,20 @@ public class Pantalla_PrincipalP extends javax.swing.JFrame {
         JMRegistrar.add(subAgendarCita);
 
         JMenu.add(JMRegistrar);
+
+        JMCerrarSesión.setText("Cerrar Sesión");
+        JMCerrarSesión.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
+
+        subCerrarSesión.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
+        subCerrarSesión.setText("Cerrar Sesión");
+        subCerrarSesión.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subCerrarSesiónActionPerformed(evt);
+            }
+        });
+        JMCerrarSesión.add(subCerrarSesión);
+
+        JMenu.add(JMCerrarSesión);
 
         setJMenuBar(JMenu);
 
@@ -107,6 +122,11 @@ public class Pantalla_PrincipalP extends javax.swing.JFrame {
     private void subVerCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subVerCitasActionPerformed
         new VerCitas().setVisible(true);
     }//GEN-LAST:event_subVerCitasActionPerformed
+
+    private void subCerrarSesiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subCerrarSesiónActionPerformed
+        new Form_Seleccion().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_subCerrarSesiónActionPerformed
 
     public static void main(String args[]) {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -141,12 +161,14 @@ public class Pantalla_PrincipalP extends javax.swing.JFrame {
     private javax.swing.JLabel JLCorreo;
     private javax.swing.JLabel JLNombre;
     private javax.swing.JLabel JLco;
+    private javax.swing.JMenu JMCerrarSesión;
     private javax.swing.JMenu JMRegistrar;
     private javax.swing.JMenuBar JMenu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem subAgendarCita;
+    private javax.swing.JMenuItem subCerrarSesión;
     private javax.swing.JMenuItem subVerCitas;
     // End of variables declaration//GEN-END:variables
 }
