@@ -94,7 +94,7 @@ public class CitasSQL {
         return documento;
     }
 
-    public ArrayList<String> obtenerCitasTomadas(Timestamp inicioDisponibilidad, Timestamp finDisponibilidad, int numeroDocumento) {
+    public ArrayList<String> obtenerCitasDisponibles(Timestamp inicioDisponibilidad, Timestamp finDisponibilidad, int numeroDocumento) {
         Connection con = null;
         PreparedStatement stmt = null;
         ResultSet rta = null;

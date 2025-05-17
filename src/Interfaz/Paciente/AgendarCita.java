@@ -135,7 +135,7 @@ public class AgendarCita extends javax.swing.JFrame {
                 int numeroDocumento = c.determinarNumeroDocumentoMedico(JTMedicos.getValueAt(Fila, 0).toString(), JTMedicos.getValueAt(Fila, 1).toString(), JTMedicos.getValueAt(Fila, 2).toString());
                 ci.setDocumentoMedico(numeroDocumento);
                 ci.setDocumentoPaciente(c.determinarNumeroDocumentoPaciente());
-                citasDisponibles = c.obtenerCitasTomadas(disponibilidadInicial, disponibilidadFinal, numeroDocumento);
+                citasDisponibles = c.obtenerCitasDisponibles(disponibilidadInicial, disponibilidadFinal, numeroDocumento);
                 new DeterminarFechaCita(citasDisponibles, JTMedicos.getValueAt(Fila, 0).toString(), JTMedicos.getValueAt(Fila, 1).toString(), JTMedicos.getValueAt(Fila, 2).toString(), ci).setVisible(true);
                 this.dispose();
             } else {
