@@ -1,6 +1,7 @@
 package Interfaz.Medico;
 
 import Persistencias.MedicoSQL;
+import java.sql.Timestamp;
 import java.util.Date;
 import javax.swing.JOptionPane;
 
@@ -70,7 +71,8 @@ public class Establecer_Disponibilidad extends javax.swing.JFrame {
     private void BTNEstablecerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BTNEstablecerActionPerformed
         fechaInicio = (Date) JSInicio.getValue();
         fechaFinal = (Date) JSFin.getValue();
-        if(fechaFinal.after(fechaInicio)){
+        Timestamp ahora = new Timestamp(System.currentTimeMillis());
+        if(fechaFinal.after(fechaInicio) && fechaInicio.after(ahora)){
             MedicoSQL M = new MedicoSQL();
             M.esteblecerDisponibilidad(fechaInicio, fechaFinal);
             this.dispose();
