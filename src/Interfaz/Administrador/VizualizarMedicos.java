@@ -28,6 +28,7 @@ public class VizualizarMedicos extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        JTMedicos.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         JTMedicos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},

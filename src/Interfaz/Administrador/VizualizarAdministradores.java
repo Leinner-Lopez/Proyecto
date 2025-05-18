@@ -28,6 +28,7 @@ public class VizualizarAdministradores extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        JTAdministradores.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
         JTAdministradores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
