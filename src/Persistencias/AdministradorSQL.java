@@ -116,10 +116,12 @@ public class AdministradorSQL extends UsuarioSQL {
     public Object[][] verCitas(String Usuario) {
         List<Object[]> citas = new ArrayList<>();
         Connection con = null;
+        PreparedStatement stmtPaciente = null;
         PreparedStatement stmtCitas = null;
         PreparedStatement stmtMedico = null;
         ResultSet rtaCitas = null;
         ResultSet rtaMedico = null;
+        ResultSet rtaPaciente = null;
         SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
         try {
@@ -130,14 +132,19 @@ public class AdministradorSQL extends UsuarioSQL {
 
             while (rtaCitas.next()) {
                 Object[] datos = new Object[4];
-
+                //Buscar datos en la tabla Citas
                 int docPaciente = rtaCitas.getInt("documento_paciente");
                 int docMedico = rtaCitas.getInt("documento_medico");
                 Timestamp fechaHora = rtaCitas.getTimestamp("fecha_hora");
-
-                datos[0] = docPaciente;
+                //Buscar datos del paciente
+                String queryPaciente = "SELECT nombre_1, apellido_1 FROM pacientes WHERE num_documento = ?";
+                stmtPaciente = con.prepareStatement(queryPaciente);
+                stmtPaciente.setInt(1, docPaciente);
+                rtaPaciente = stmtPaciente.executeQuery();                
+                if(rtaPaciente.next()){
+                    datos[0] = rtaPaciente.getString("nombre_1") +" " + rtaPaciente.getString("apellido_1");
+                }
                 datos[3] = formato.format(fechaHora);
-
                 // Buscar datos del médico
                 String queryMedico = "SELECT nombre_1, apellido_1, especialidad FROM medicos WHERE num_documento = ?";
                 stmtMedico = con.prepareStatement(queryMedico);

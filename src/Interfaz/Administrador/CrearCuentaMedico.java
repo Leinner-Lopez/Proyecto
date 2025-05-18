@@ -305,25 +305,29 @@ public class CrearCuentaMedico extends javax.swing.JFrame {
         if (!JTnombre_1.getText().equals("") && !JTapellido_1.getText().equals("") && !JTNumero_Documento.getText().equals("")
                 && !JTNumero_Principal1.getText().equals("") && !JTCorreo_Electronico.getText().equals("") && !JTUsuario.getText().equals("")
                 && !contra.equals("") && contra.equals(Ccontra)) {
-            int respuesta = JOptionPane.showConfirmDialog(null, "¿Estas segur@ de enviar los datos?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-            if (respuesta == JOptionPane.YES_OPTION) {
-                String Bis = "";
-                if (JCBIS.isSelected()) {
-                    Bis = "Bis";
+            if (Metodos.correoElectronicoValido(JTCorreo_Electronico.getText()) && Metodos.telefonoValido(JTTelefono.getText())) {
+                int respuesta = JOptionPane.showConfirmDialog(null, "¿Estas segur@ de enviar los datos?", "Confirmacion", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+                if (respuesta == JOptionPane.YES_OPTION) {
+                    String Bis = "";
+                    if (JCBIS.isSelected()) {
+                        Bis = "Bis";
+                    }
+                    if (U.buscarExitenciadeNumeroDocumento(Integer.parseInt(JTNumero_Documento.getText()), "medicos")
+                            || U.buscarExitenciadeUsuario(JTUsuario.getText())) {
+                        JOptionPane.showMessageDialog(null, "Ya hay una persona con el mismo numero de documento o usuario", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        String Direccion = Metodos.direccion(CBTipo_Via1.getSelectedItem().toString().trim(), JTNumero_Principal1.getText().trim(), Bis.trim(), CBLetras1.getSelectedItem().toString().trim(), CBOrientacion1.getSelectedItem().toString().trim(), JTNumero1.getText().trim(), CBLetras2.getSelectedItem().toString().trim(), JTNumero2.getText().trim());
+                        Date FechaNacimiento = (Date) JSFecha_Nacimiento.getValue();
+                        Medico.especialidad esp = Medico.especialidad.valueOf(CBEspecialidad.getSelectedItem().toString());
+                        Medico M = new Medico(JTnombre_1.getText(), JTnombre_2.getText(), JTapellido_1.getText(), JTapellido_2.getText(), CBTipo_Documento.getSelectedItem().toString(), Integer.parseInt(JTNumero_Documento.getText()), FechaNacimiento, JTCorreo_Electronico.getText(), JTTelefono.getText(), Direccion, CBBarrio.getSelectedItem().toString(), JTUsuario.getText().trim(), contra.trim(), esp);
+                        Medico.setUsuario(JTUsuario.getText());
+                        MedicoSQL MS = new MedicoSQL(M);
+                        MS.registrar();
+                        this.dispose();
+                    }
                 }
-                if (U.buscarExitenciadeNumeroDocumento(Integer.parseInt(JTNumero_Documento.getText()), "medicos")
-                        || U.buscarExitenciadeUsuario(JTUsuario.getText())) {
-                    JOptionPane.showMessageDialog(null, "Ya hay una persona con el mismo numero de documento o usuario", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    String Direccion = Metodos.direccion(CBTipo_Via1.getSelectedItem().toString().trim(), JTNumero_Principal1.getText().trim(), Bis.trim(), CBLetras1.getSelectedItem().toString().trim(), CBOrientacion1.getSelectedItem().toString().trim(), JTNumero1.getText().trim(), CBLetras2.getSelectedItem().toString().trim(), JTNumero2.getText().trim());
-                    Date FechaNacimiento = (Date) JSFecha_Nacimiento.getValue();
-                    Medico.especialidad esp = Medico.especialidad.valueOf(CBEspecialidad.getSelectedItem().toString());
-                    Medico M = new Medico(JTnombre_1.getText(), JTnombre_2.getText(), JTapellido_1.getText(), JTapellido_2.getText(), CBTipo_Documento.getSelectedItem().toString(), Integer.parseInt(JTNumero_Documento.getText()), FechaNacimiento, JTCorreo_Electronico.getText(), JTTelefono.getText(), Direccion, CBBarrio.getSelectedItem().toString(), JTUsuario.getText().trim(), contra.trim(), esp);
-                    Medico.setUsuario(JTUsuario.getText());
-                    MedicoSQL MS = new MedicoSQL(M);
-                    MS.registrar();
-                    this.dispose();
-                }
+            }else{
+                JOptionPane.showMessageDialog(null, "Correo Electronico o Numero de Telefono invalidos", "Error", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Llena todos los campos", "Error", JOptionPane.ERROR_MESSAGE);

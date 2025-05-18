@@ -66,7 +66,7 @@ public class Pantalla_PrincipalP extends javax.swing.JFrame {
         JMRegistrar.setFont(new java.awt.Font("Serif", 1, 14)); // NOI18N
 
         subVerCitas.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
-        subVerCitas.setText("VerCitas");
+        subVerCitas.setText("Ver Citas");
         subVerCitas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subVerCitasActionPerformed(evt);
@@ -75,7 +75,7 @@ public class Pantalla_PrincipalP extends javax.swing.JFrame {
         JMRegistrar.add(subVerCitas);
 
         subAgendarCita.setFont(new java.awt.Font("Serif", 0, 14)); // NOI18N
-        subAgendarCita.setText("AgendarCita");
+        subAgendarCita.setText("Agendar Cita");
         subAgendarCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subAgendarCitaActionPerformed(evt);

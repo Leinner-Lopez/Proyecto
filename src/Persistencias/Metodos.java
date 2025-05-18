@@ -1,8 +1,9 @@
 package Persistencias;
 
 import java.util.StringJoiner;
+import java.util.regex.Pattern;
 
-public abstract class Metodos {
+public class Metodos {
 
     public static String[] descomponerDireccion(String direccion) {
         // Resultado: [tipoVia, numeroPrincipal, bis, letraPrincipal, orientacion, numeroSecundario, letraSecundaria, numeroFinal]
@@ -74,5 +75,20 @@ public abstract class Metodos {
         direccionJ.add("-");
         direccionJ.add(h);
         return direccionJ.toString();
+    }
+
+    public static boolean correoElectronicoValido(String correoElectronico) {
+        String regex = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$";
+        return Pattern.matches(regex, correoElectronico);
+    }
+
+    public static boolean telefonoValido(String telefono) {
+        int contador = 0;
+        for (char c : telefono.toCharArray()) {
+            if (Character.isDigit(c)) {
+                contador++;
+            }
+        }
+        return contador == 10;
     }
 }
