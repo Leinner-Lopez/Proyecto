@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import java.sql.CallableStatement;
 
 public class AdministradorSQL extends UsuarioSQL {
     private Conexion c = new Conexion();
@@ -192,22 +193,21 @@ public class AdministradorSQL extends UsuarioSQL {
     public Object[][] visualizarMedicos() {
         List<Object[]> medicos = new ArrayList<>();
         Connection con = null;
-        PreparedStatement stmt = null;
+        CallableStatement stmt = null;
         ResultSet rta = null;
         try {
             con = c.conectar();
-            String query = "SELECT nombre_1, apellido_1, tipo_documento, num_documento, especialidad, num_telefono FROM medicos";
-            stmt = con.prepareStatement(query);
+            stmt = con.prepareCall("{CALL obtenerMedicos()}");
             rta = stmt.executeQuery();
-            while (rta.next()) {
-                Object[] fila = new Object[6];
-                fila[0] = rta.getString("nombre_1");
-                fila[1] = rta.getString("apellido_1");
-                fila[2] = rta.getString("tipo_documento");
-                fila[3] = rta.getInt("num_documento");
-                fila[4] = rta.getString("especialidad");
-                fila[5] = rta.getString("num_telefono");
-                medicos.add(fila);
+            while(rta.next()){
+                Object[] datos = new Object[6];
+                datos[0] = rta.getString(1);
+                datos[1] = rta.getString(2);
+                datos[2] = rta.getString(3);
+                datos[3] = rta.getInt(4);
+                datos[4] = rta.getString(5);
+                datos[5] = rta.getString(6);
+                medicos.add(datos);
             }
             return medicos.toArray(new Object[medicos.size()][5]);
         } catch (SQLException e) {
@@ -234,22 +234,21 @@ public class AdministradorSQL extends UsuarioSQL {
     public Object[][] visualizarPacientes() {
         List<Object[]> pacientes = new ArrayList<>();
         Connection con = null;
-        PreparedStatement stmt = null;
+        CallableStatement stmt = null;
         ResultSet rta = null;
         try {
             con = c.conectar();
-            String query = "SELECT nombre_1, apellido_1, tipo_documento, num_documento, seguro_medico, num_telefono FROM pacientes";
-            stmt = con.prepareStatement(query);
+            stmt = con.prepareCall("{CALL obtenerPacientes()}");
             rta = stmt.executeQuery();
-            while (rta.next()) {
-                Object[] fila = new Object[6];
-                fila[0] = rta.getString("nombre_1");
-                fila[1] = rta.getString("apellido_1");
-                fila[2] = rta.getString("tipo_documento");
-                fila[3] = rta.getInt("num_documento");
-                fila[4] = rta.getString("seguro_medico");
-                fila[5] = rta.getString("num_telefono");
-                pacientes.add(fila);
+            while(rta.next()){
+                Object[] datos = new Object[6];
+                datos[0] = rta.getString(1);
+                datos[1] = rta.getString(2);
+                datos[2] = rta.getString(3);
+                datos[3] = rta.getInt(4);
+                datos[4] = rta.getString(5);
+                datos[5] = rta.getString(6);
+                pacientes.add(datos);
             }
             return pacientes.toArray(new Object[pacientes.size()][6]);
         } catch (SQLException e) {
@@ -547,3 +546,4 @@ public class AdministradorSQL extends UsuarioSQL {
         return administrador;
     }
 }
+

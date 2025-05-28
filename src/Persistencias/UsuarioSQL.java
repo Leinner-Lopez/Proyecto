@@ -189,5 +189,4 @@ public abstract class UsuarioSQL {
         }
         return user;
     }
-
 }

@@ -39,6 +39,4 @@ public class Citas {
     public void setFechaCita(Date fechaCita) {
         this.fechaCita = fechaCita;
     }
-    
-    
 }
